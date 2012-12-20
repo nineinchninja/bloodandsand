@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<item value="false" key="ProjectSelectionDialog.show_all"/>
+	<item value="C:\Program Files\Java\jdk1.7.0_10" key="org.eclipse.jdt.ui.lastextjar"/>
 	<section name="org.eclipse.jdt.internal.ui.packageview.PackageExplorerPart">
 		<item value="true" key="group_libraries"/>
 		<item value="false" key="linkWithEditor"/>
@@ -12,12 +14,22 @@
 	<section name="BuildPathsPropertyPage">
 		<item value="3" key="pageIndex"/>
 	</section>
+	<section name="ProblemSeveritiesConfigurationBlock">
+		<item value="false" key="expanded4"/>
+		<item value="false" key="expanded3"/>
+		<item value="false" key="expanded2"/>
+		<item value="false" key="expanded1"/>
+		<item value="false" key="expanded7"/>
+		<item value="false" key="expanded6"/>
+		<item value="false" key="expanded5"/>
+		<item value="true" key="expanded0"/>
+	</section>
 	<section name="ClasspathContainerSelectionPage">
 		<item value="3" key="index"/>
 	</section>
 	<section name="JavaBuildConfigurationBlock">
 		<item value="false" key="expanded2"/>
-		<item value="false" key="expanded1"/>
+		<item value="true" key="expanded1"/>
 		<item value="true" key="expanded0"/>
 	</section>
 </section>

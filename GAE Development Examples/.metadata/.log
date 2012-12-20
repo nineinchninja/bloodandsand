@@ -187,3 +187,516 @@ java.lang.RuntimeException
 
 !ENTRY org.eclipse.ui 2 2 2012-12-19 04:23:25.657
 !MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.xml.ui, propertyPage: org.eclipse.wst.xml.ui.propertyPage.project.validation)
+!SESSION 2012-12-19 04:40:17.773 -----------------------------------------------
+eclipse.buildId=M20120914-1800
+java.version=1.7.0_10
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2012-12-19 04:40:31.333
+!MESSAGE SecurityException: Unable to find field for dex.jar
+!STACK 0
+java.lang.NoSuchFieldException: forceJumbo
+	at java.lang.Class.getField(Unknown Source)
+	at com.android.ide.eclipse.adt.internal.build.DexWrapper.loadDex(DexWrapper.java:96)
+	at com.android.ide.eclipse.adt.internal.sdk.Sdk.loadSdk(Sdk.java:273)
+	at com.android.ide.eclipse.adt.AdtPlugin$7.run(AdtPlugin.java:1389)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.ui 2 2 2012-12-19 04:41:07.538
+!MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.jst.jsp.ui, propertyPage: org.eclipse.jst.jsp.ui.propertyPage.project.validation)
+
+!ENTRY org.eclipse.ui 2 2 2012-12-19 04:41:07.539
+!MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.html.ui, propertyPage: org.eclipse.wst.html.ui.propertyPage.project.validation)
+
+!ENTRY org.eclipse.ui 2 2 2012-12-19 04:41:07.540
+!MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.xml.ui, propertyPage: org.eclipse.wst.xml.ui.propertyPage.project.validation)
+
+!ENTRY org.eclipse.jdt.ui 4 10001 2012-12-19 04:44:00.263
+!MESSAGE Internal Error
+!STACK 1
+Java Model Exception: Java Model Status [Build path contains duplicate entry: 'org.eclipse.jdt.launching.JRE_CONTAINER' for project 'GAE Development Examples']
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:784)
+	at org.eclipse.jdt.internal.core.JavaProject.setRawClasspath(JavaProject.java:3095)
+	at org.eclipse.jdt.internal.core.JavaProject.setRawClasspath(JavaProject.java:3057)
+	at org.eclipse.jdt.internal.core.JavaProject.setRawClasspath(JavaProject.java:3069)
+	at org.eclipse.jdt.internal.ui.preferences.ClasspathContainerPreferencePage$1.run(ClasspathContainerPreferencePage.java:121)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+!SUBENTRY 1 org.eclipse.jdt.core 4 977 2012-12-19 04:44:00.264
+!MESSAGE Build path contains duplicate entry: 'org.eclipse.jdt.launching.JRE_CONTAINER' for project 'GAE Development Examples'
+
+!ENTRY com.google.appengine.eclipse.core 4 0 2012-12-19 04:48:37.472
+!MESSAGE Unable to update app: Cannot get the System Java Compiler. Please use a JDK, not a JRE.
+
+See the deployment console for more details
+!STACK 0
+com.google.appengine.tools.admin.AdminException: Unable to update app: Cannot get the System Java Compiler. Please use a JDK, not a JRE.
+	at com.google.appengine.tools.admin.AppAdminImpl.doUpdate(AppAdminImpl.java:376)
+	at com.google.appengine.tools.admin.AppAdminImpl.update(AppAdminImpl.java:53)
+	at com.google.appengine.eclipse.core.proxy.AppEngineBridgeImpl.deploy(AppEngineBridgeImpl.java:433)
+	at com.google.appengine.eclipse.core.deploy.DeployProjectJob.runInWorkspace(DeployProjectJob.java:148)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.lang.RuntimeException: Cannot get the System Java Compiler. Please use a JDK, not a JRE.
+	at com.google.appengine.tools.admin.Application.compileJavaFiles(Application.java:763)
+	at com.google.appengine.tools.admin.Application.compileJsps(Application.java:750)
+	at com.google.appengine.tools.admin.Application.createStagingDirectory(Application.java:582)
+	at com.google.appengine.tools.admin.AppAdminImpl.doUpdate(AppAdminImpl.java:370)
+	... 5 more
+
+!ENTRY com.google.appengine.eclipse.core 4 0 2012-12-19 05:14:37.916
+!MESSAGE Unable to update app: Cannot get the System Java Compiler. Please use a JDK, not a JRE.
+
+See the deployment console for more details
+!STACK 0
+com.google.appengine.tools.admin.AdminException: Unable to update app: Cannot get the System Java Compiler. Please use a JDK, not a JRE.
+	at com.google.appengine.tools.admin.AppAdminImpl.doUpdate(AppAdminImpl.java:376)
+	at com.google.appengine.tools.admin.AppAdminImpl.update(AppAdminImpl.java:53)
+	at com.google.appengine.eclipse.core.proxy.AppEngineBridgeImpl.deploy(AppEngineBridgeImpl.java:433)
+	at com.google.appengine.eclipse.core.deploy.DeployProjectJob.runInWorkspace(DeployProjectJob.java:148)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.lang.RuntimeException: Cannot get the System Java Compiler. Please use a JDK, not a JRE.
+	at com.google.appengine.tools.admin.Application.compileJavaFiles(Application.java:763)
+	at com.google.appengine.tools.admin.Application.compileJsps(Application.java:750)
+	at com.google.appengine.tools.admin.Application.createStagingDirectory(Application.java:582)
+	at com.google.appengine.tools.admin.AppAdminImpl.doUpdate(AppAdminImpl.java:370)
+	... 5 more
+
+!ENTRY org.eclipse.core.resources 4 2 2012-12-19 05:27:22.075
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 1
+org.eclipse.core.runtime.CoreException: Unable to locate the JVM for project GAE Development Examples. Please verify that you have a project-level JVM installed by inspecting your project's build path.
+	at com.google.gdt.eclipse.core.ProcessUtilities.computeJavaExecutableFullyQualifiedPath(ProcessUtilities.java:113)
+	at com.google.gdt.eclipse.core.ProcessUtilities.computeJavaCompilerExecutableFullyQualifiedPath(ProcessUtilities.java:97)
+	at com.google.gdt.eclipse.core.ProcessUtilities.isUsingJDK(ProcessUtilities.java:176)
+	at com.google.appengine.eclipse.core.validators.GaeProjectValidator.validateUsingJDKifUsingJSPs(GaeProjectValidator.java:227)
+	at com.google.appengine.eclipse.core.validators.GaeProjectValidator.build(GaeProjectValidator.java:108)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:728)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:199)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:239)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:292)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:295)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:351)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:374)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:143)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:241)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 com.google.gdt.eclipse.core 4 0 2012-12-19 05:27:22.075
+!MESSAGE Unable to locate the JVM for project GAE Development Examples. Please verify that you have a project-level JVM installed by inspecting your project's build path.
+!SUBENTRY 1 com.google.gdt.eclipse.core 4 0 2012-12-19 05:27:22.075
+!MESSAGE Unable to locate the JVM for project GAE Development Examples. Please verify that you have a project-level JVM installed by inspecting your project's build path.
+
+!ENTRY org.eclipse.core.resources 4 75 2012-12-19 05:27:22.125
+!MESSAGE Errors occurred during the build.
+!SUBENTRY 1 com.google.appengine.eclipse.core 4 75 2012-12-19 05:27:22.125
+!MESSAGE Errors running builder 'Google App Engine Project Validator' on project 'GAE Development Examples'.
+!STACK 1
+org.eclipse.core.runtime.CoreException: Unable to locate the JVM for project GAE Development Examples. Please verify that you have a project-level JVM installed by inspecting your project's build path.
+	at com.google.gdt.eclipse.core.ProcessUtilities.computeJavaExecutableFullyQualifiedPath(ProcessUtilities.java:113)
+	at com.google.gdt.eclipse.core.ProcessUtilities.computeJavaCompilerExecutableFullyQualifiedPath(ProcessUtilities.java:97)
+	at com.google.gdt.eclipse.core.ProcessUtilities.isUsingJDK(ProcessUtilities.java:176)
+	at com.google.appengine.eclipse.core.validators.GaeProjectValidator.validateUsingJDKifUsingJSPs(GaeProjectValidator.java:227)
+	at com.google.appengine.eclipse.core.validators.GaeProjectValidator.build(GaeProjectValidator.java:108)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:728)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:199)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:239)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:292)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:295)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:351)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:374)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:143)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:241)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 2 com.google.gdt.eclipse.core 4 0 2012-12-19 05:27:22.125
+!MESSAGE Unable to locate the JVM for project GAE Development Examples. Please verify that you have a project-level JVM installed by inspecting your project's build path.
+!SUBENTRY 1 com.google.gdt.eclipse.core 4 0 2012-12-19 05:27:22.125
+!MESSAGE Unable to locate the JVM for project GAE Development Examples. Please verify that you have a project-level JVM installed by inspecting your project's build path.
+
+!ENTRY com.google.gdt.eclipse.core 4 0 2012-12-19 05:27:22.131
+!MESSAGE Unable to locate the JVM for project GAE Development Examples. Please verify that you have a project-level JVM installed by inspecting your project's build path.
+
+!ENTRY org.eclipse.core.resources 4 2 2012-12-19 05:27:28.941
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 1
+org.eclipse.core.runtime.CoreException: Unable to locate the JVM for project GAE Development Examples. Please verify that you have a project-level JVM installed by inspecting your project's build path.
+	at com.google.gdt.eclipse.core.ProcessUtilities.computeJavaExecutableFullyQualifiedPath(ProcessUtilities.java:113)
+	at com.google.gdt.eclipse.core.ProcessUtilities.computeJavaCompilerExecutableFullyQualifiedPath(ProcessUtilities.java:97)
+	at com.google.gdt.eclipse.core.ProcessUtilities.isUsingJDK(ProcessUtilities.java:176)
+	at com.google.appengine.eclipse.core.validators.GaeProjectValidator.validateUsingJDKifUsingJSPs(GaeProjectValidator.java:227)
+	at com.google.appengine.eclipse.core.validators.GaeProjectValidator.build(GaeProjectValidator.java:108)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:728)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:199)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:239)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:292)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:295)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:256)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:394)
+	at org.eclipse.core.internal.resources.Project$1.run(Project.java:618)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2344)
+	at org.eclipse.core.internal.resources.Project.internalBuild(Project.java:597)
+	at org.eclipse.core.internal.resources.Project.build(Project.java:114)
+	at org.eclipse.jdt.internal.ui.util.CoreUtility$BuildJob.run(CoreUtility.java:161)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 com.google.gdt.eclipse.core 4 0 2012-12-19 05:27:28.942
+!MESSAGE Unable to locate the JVM for project GAE Development Examples. Please verify that you have a project-level JVM installed by inspecting your project's build path.
+!SUBENTRY 1 com.google.gdt.eclipse.core 4 0 2012-12-19 05:27:28.942
+!MESSAGE Unable to locate the JVM for project GAE Development Examples. Please verify that you have a project-level JVM installed by inspecting your project's build path.
+
+!ENTRY com.google.gdt.eclipse.core 4 0 2012-12-19 05:27:29.075
+!MESSAGE Unable to locate the JVM for project GAE Development Examples. Please verify that you have a project-level JVM installed by inspecting your project's build path.
+
+!ENTRY org.eclipse.core.resources 4 566 2012-12-19 05:27:29.093
+!MESSAGE Errors occurred during the build.
+!SUBENTRY 1 com.google.appengine.eclipse.core 4 75 2012-12-19 05:27:29.093
+!MESSAGE Errors running builder 'Google App Engine Project Validator' on project 'GAE Development Examples'.
+!STACK 1
+org.eclipse.core.runtime.CoreException: Unable to locate the JVM for project GAE Development Examples. Please verify that you have a project-level JVM installed by inspecting your project's build path.
+	at com.google.gdt.eclipse.core.ProcessUtilities.computeJavaExecutableFullyQualifiedPath(ProcessUtilities.java:113)
+	at com.google.gdt.eclipse.core.ProcessUtilities.computeJavaCompilerExecutableFullyQualifiedPath(ProcessUtilities.java:97)
+	at com.google.gdt.eclipse.core.ProcessUtilities.isUsingJDK(ProcessUtilities.java:176)
+	at com.google.appengine.eclipse.core.validators.GaeProjectValidator.validateUsingJDKifUsingJSPs(GaeProjectValidator.java:227)
+	at com.google.appengine.eclipse.core.validators.GaeProjectValidator.build(GaeProjectValidator.java:108)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:728)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:199)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:239)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:292)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:295)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:256)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:394)
+	at org.eclipse.core.internal.resources.Project$1.run(Project.java:618)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2344)
+	at org.eclipse.core.internal.resources.Project.internalBuild(Project.java:597)
+	at org.eclipse.core.internal.resources.Project.build(Project.java:114)
+	at org.eclipse.jdt.internal.ui.util.CoreUtility$BuildJob.run(CoreUtility.java:161)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 2 com.google.gdt.eclipse.core 4 0 2012-12-19 05:27:29.093
+!MESSAGE Unable to locate the JVM for project GAE Development Examples. Please verify that you have a project-level JVM installed by inspecting your project's build path.
+!SUBENTRY 1 com.google.gdt.eclipse.core 4 0 2012-12-19 05:27:29.093
+!MESSAGE Unable to locate the JVM for project GAE Development Examples. Please verify that you have a project-level JVM installed by inspecting your project's build path.
+!SESSION 2012-12-19 05:50:49.022 -----------------------------------------------
+eclipse.buildId=M20120914-1800
+java.version=1.7.0_10
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2012-12-19 05:51:42.833
+!MESSAGE SecurityException: Unable to find field for dex.jar
+!STACK 0
+java.lang.NoSuchFieldException: forceJumbo
+	at java.lang.Class.getField(Unknown Source)
+	at com.android.ide.eclipse.adt.internal.build.DexWrapper.loadDex(DexWrapper.java:96)
+	at com.android.ide.eclipse.adt.internal.sdk.Sdk.loadSdk(Sdk.java:273)
+	at com.android.ide.eclipse.adt.AdtPlugin$7.run(AdtPlugin.java:1389)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY com.google.gdt.eclipse.suite 1 0 2012-12-19 05:52:47.132
+!MESSAGE Registering: com.google.gwt.eclipse.sdkbundle_2.5.0.v201212122042-rel-r42
+
+!ENTRY com.google.gdt.eclipse.core 1 0 2012-12-19 05:52:47.256
+!MESSAGE Scheduled rebuild of project GAE Development Examples because of plugin update (current version: 3.1.3.v201212122042-rel-r42)
+
+!ENTRY org.eclipse.ui 2 2 2012-12-19 05:53:32.540
+!MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.jst.jsp.ui, propertyPage: org.eclipse.jst.jsp.ui.propertyPage.project.validation)
+
+!ENTRY org.eclipse.ui 2 2 2012-12-19 05:53:32.541
+!MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.html.ui, propertyPage: org.eclipse.wst.html.ui.propertyPage.project.validation)
+
+!ENTRY org.eclipse.ui 2 2 2012-12-19 05:53:32.541
+!MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.xml.ui, propertyPage: org.eclipse.wst.xml.ui.propertyPage.project.validation)
+
+!ENTRY com.google.appengine.eclipse.core 4 0 2012-12-19 05:55:09.397
+!MESSAGE Unable to update app: Cannot get the System Java Compiler. Please use a JDK, not a JRE.
+
+See the deployment console for more details
+!STACK 0
+com.google.appengine.tools.admin.AdminException: Unable to update app: Cannot get the System Java Compiler. Please use a JDK, not a JRE.
+	at com.google.appengine.tools.admin.AppAdminImpl.doUpdate(AppAdminImpl.java:376)
+	at com.google.appengine.tools.admin.AppAdminImpl.update(AppAdminImpl.java:53)
+	at com.google.appengine.eclipse.core.proxy.AppEngineBridgeImpl.deploy(AppEngineBridgeImpl.java:433)
+	at com.google.appengine.eclipse.core.deploy.DeployProjectJob.runInWorkspace(DeployProjectJob.java:148)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.lang.RuntimeException: Cannot get the System Java Compiler. Please use a JDK, not a JRE.
+	at com.google.appengine.tools.admin.Application.compileJavaFiles(Application.java:763)
+	at com.google.appengine.tools.admin.Application.compileJsps(Application.java:750)
+	at com.google.appengine.tools.admin.Application.createStagingDirectory(Application.java:582)
+	at com.google.appengine.tools.admin.AppAdminImpl.doUpdate(AppAdminImpl.java:370)
+	... 5 more
+
+!ENTRY com.google.appengine.eclipse.core 4 0 2012-12-19 06:07:48.797
+!MESSAGE Unable to update app: Cannot get the System Java Compiler. Please use a JDK, not a JRE.
+
+See the deployment console for more details
+!STACK 0
+com.google.appengine.tools.admin.AdminException: Unable to update app: Cannot get the System Java Compiler. Please use a JDK, not a JRE.
+	at com.google.appengine.tools.admin.AppAdminImpl.doUpdate(AppAdminImpl.java:376)
+	at com.google.appengine.tools.admin.AppAdminImpl.update(AppAdminImpl.java:53)
+	at com.google.appengine.eclipse.core.proxy.AppEngineBridgeImpl.deploy(AppEngineBridgeImpl.java:433)
+	at com.google.appengine.eclipse.core.deploy.DeployProjectJob.runInWorkspace(DeployProjectJob.java:148)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.lang.RuntimeException: Cannot get the System Java Compiler. Please use a JDK, not a JRE.
+	at com.google.appengine.tools.admin.Application.compileJavaFiles(Application.java:763)
+	at com.google.appengine.tools.admin.Application.compileJsps(Application.java:750)
+	at com.google.appengine.tools.admin.Application.createStagingDirectory(Application.java:582)
+	at com.google.appengine.tools.admin.AppAdminImpl.doUpdate(AppAdminImpl.java:370)
+	... 5 more
+
+!ENTRY com.google.appengine.eclipse.core 4 0 2012-12-19 06:10:33.738
+!MESSAGE Unexpected Exception
+!STACK 0
+java.lang.NoClassDefFoundError: com/google/appengine/tools/admin/AdminException
+	at java.lang.Class.getDeclaredConstructors0(Native Method)
+	at java.lang.Class.privateGetDeclaredConstructors(Unknown Source)
+	at java.lang.Class.getConstructor0(Unknown Source)
+	at java.lang.Class.newInstance0(Unknown Source)
+	at java.lang.Class.newInstance(Unknown Source)
+	at com.google.appengine.eclipse.core.sdk.AppEngineBridgeFactory.createBridge(AppEngineBridgeFactory.java:183)
+	at com.google.appengine.eclipse.core.sdk.AppEngineBridgeFactory.createBridge(AppEngineBridgeFactory.java:121)
+	at com.google.appengine.eclipse.core.sdk.AppEngineBridgeFactory.getAppEngineBridge(AppEngineBridgeFactory.java:94)
+	at com.google.appengine.eclipse.core.sdk.GaeSdk.getAppEngineBridge(GaeSdk.java:284)
+	at com.google.appengine.eclipse.core.sdk.GaeSdk.validate(GaeSdk.java:457)
+	at com.google.gdt.eclipse.core.ui.AddSdkDialog.validateSdk(AddSdkDialog.java:273)
+	at com.google.gdt.eclipse.core.ui.AddSdkDialog.validate(AddSdkDialog.java:213)
+	at com.google.gdt.eclipse.core.ui.AddSdkDialog$4.modifyText(AddSdkDialog.java:176)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:179)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1053)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1077)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1058)
+	at org.eclipse.swt.widgets.Text.wmCommandChild(Text.java:2947)
+	at org.eclipse.swt.widgets.Control.WM_COMMAND(Control.java:4669)
+	at org.eclipse.swt.widgets.Control.windowProc(Control.java:4531)
+	at org.eclipse.swt.widgets.Display.windowProc(Display.java:4976)
+	at org.eclipse.swt.internal.win32.OS.CallWindowProcW(Native Method)
+	at org.eclipse.swt.internal.win32.OS.CallWindowProc(OS.java:2440)
+	at org.eclipse.swt.widgets.Text.callWindowProc(Text.java:260)
+	at org.eclipse.swt.widgets.Control.windowProc(Control.java:4623)
+	at org.eclipse.swt.widgets.Text.windowProc(Text.java:2570)
+	at org.eclipse.swt.widgets.Display.windowProc(Display.java:4976)
+	at org.eclipse.swt.internal.win32.OS.SetWindowTextW(Native Method)
+	at org.eclipse.swt.internal.win32.OS.SetWindowText(OS.java:3461)
+	at org.eclipse.swt.widgets.Text.setText(Text.java:2230)
+	at com.google.gdt.eclipse.core.ui.AddSdkDialog$2.widgetSelected(AddSdkDialog.java:153)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:248)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1053)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4169)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3758)
+	at org.eclipse.jface.window.Window.runEventLoop(Window.java:825)
+	at org.eclipse.jface.window.Window.open(Window.java:801)
+	at com.google.appengine.eclipse.core.preferences.ui.GaePreferencePage$1.doAddSdk(GaePreferencePage.java:90)
+	at com.google.gdt.eclipse.core.ui.SdkTable$3.widgetSelected(SdkTable.java:242)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:248)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1053)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4169)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3758)
+	at org.eclipse.jface.window.Window.runEventLoop(Window.java:825)
+	at org.eclipse.jface.window.Window.open(Window.java:801)
+	at org.eclipse.ui.internal.dialogs.WorkbenchPreferenceDialog.open(WorkbenchPreferenceDialog.java:215)
+	at org.eclipse.ui.internal.OpenPreferencesAction.run(OpenPreferencesAction.java:65)
+	at org.eclipse.jface.action.Action.runWithEvent(Action.java:498)
+	at org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(ActionContributionItem.java:584)
+	at org.eclipse.jface.action.ActionContributionItem.access$2(ActionContributionItem.java:501)
+	at org.eclipse.jface.action.ActionContributionItem$5.handleEvent(ActionContributionItem.java:411)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1053)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4169)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3758)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$9.run(PartRenderingEngine.java:1029)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:923)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:86)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:588)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:543)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:124)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:353)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:180)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:629)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+Caused by: java.lang.ClassNotFoundException: com.google.appengine.tools.admin.AdminException
+	at java.net.URLClassLoader$1.run(Unknown Source)
+	at java.net.URLClassLoader$1.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	... 80 more
+
+!ENTRY com.google.appengine.eclipse.core 4 0 2012-12-19 06:12:57.338
+!MESSAGE Unable to update app: Cannot get the System Java Compiler. Please use a JDK, not a JRE.
+
+See the deployment console for more details
+!STACK 0
+com.google.appengine.tools.admin.AdminException: Unable to update app: Cannot get the System Java Compiler. Please use a JDK, not a JRE.
+	at com.google.appengine.tools.admin.AppAdminImpl.doUpdate(AppAdminImpl.java:376)
+	at com.google.appengine.tools.admin.AppAdminImpl.update(AppAdminImpl.java:53)
+	at com.google.appengine.eclipse.core.proxy.AppEngineBridgeImpl.deploy(AppEngineBridgeImpl.java:433)
+	at com.google.appengine.eclipse.core.deploy.DeployProjectJob.runInWorkspace(DeployProjectJob.java:148)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.lang.RuntimeException: Cannot get the System Java Compiler. Please use a JDK, not a JRE.
+	at com.google.appengine.tools.admin.Application.compileJavaFiles(Application.java:763)
+	at com.google.appengine.tools.admin.Application.compileJsps(Application.java:750)
+	at com.google.appengine.tools.admin.Application.createStagingDirectory(Application.java:582)
+	at com.google.appengine.tools.admin.AppAdminImpl.doUpdate(AppAdminImpl.java:370)
+	... 5 more
+
+!ENTRY org.eclipse.core.resources 4 2 2012-12-19 06:13:52.243
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 1
+org.eclipse.core.runtime.CoreException: Unable to locate the JVM for project GAE Development Examples. Please verify that you have a project-level JVM installed by inspecting your project's build path.
+	at com.google.gdt.eclipse.core.ProcessUtilities.computeJavaExecutableFullyQualifiedPath(ProcessUtilities.java:113)
+	at com.google.gdt.eclipse.core.ProcessUtilities.computeJavaCompilerExecutableFullyQualifiedPath(ProcessUtilities.java:97)
+	at com.google.gdt.eclipse.core.ProcessUtilities.isUsingJDK(ProcessUtilities.java:176)
+	at com.google.appengine.eclipse.core.validators.GaeProjectValidator.validateUsingJDKifUsingJSPs(GaeProjectValidator.java:227)
+	at com.google.appengine.eclipse.core.validators.GaeProjectValidator.build(GaeProjectValidator.java:108)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:728)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:199)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:239)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:292)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:295)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:351)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:374)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:143)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:241)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 com.google.gdt.eclipse.core 4 0 2012-12-19 06:13:52.245
+!MESSAGE Unable to locate the JVM for project GAE Development Examples. Please verify that you have a project-level JVM installed by inspecting your project's build path.
+!SUBENTRY 1 com.google.gdt.eclipse.core 4 0 2012-12-19 06:13:52.245
+!MESSAGE Unable to locate the JVM for project GAE Development Examples. Please verify that you have a project-level JVM installed by inspecting your project's build path.
+
+!ENTRY org.eclipse.core.resources 4 75 2012-12-19 06:13:52.298
+!MESSAGE Errors occurred during the build.
+!SUBENTRY 1 com.google.appengine.eclipse.core 4 75 2012-12-19 06:13:52.298
+!MESSAGE Errors running builder 'Google App Engine Project Validator' on project 'GAE Development Examples'.
+!STACK 1
+org.eclipse.core.runtime.CoreException: Unable to locate the JVM for project GAE Development Examples. Please verify that you have a project-level JVM installed by inspecting your project's build path.
+	at com.google.gdt.eclipse.core.ProcessUtilities.computeJavaExecutableFullyQualifiedPath(ProcessUtilities.java:113)
+	at com.google.gdt.eclipse.core.ProcessUtilities.computeJavaCompilerExecutableFullyQualifiedPath(ProcessUtilities.java:97)
+	at com.google.gdt.eclipse.core.ProcessUtilities.isUsingJDK(ProcessUtilities.java:176)
+	at com.google.appengine.eclipse.core.validators.GaeProjectValidator.validateUsingJDKifUsingJSPs(GaeProjectValidator.java:227)
+	at com.google.appengine.eclipse.core.validators.GaeProjectValidator.build(GaeProjectValidator.java:108)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:728)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:199)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:239)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:292)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:295)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:351)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:374)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:143)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:241)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 2 com.google.gdt.eclipse.core 4 0 2012-12-19 06:13:52.298
+!MESSAGE Unable to locate the JVM for project GAE Development Examples. Please verify that you have a project-level JVM installed by inspecting your project's build path.
+!SUBENTRY 1 com.google.gdt.eclipse.core 4 0 2012-12-19 06:13:52.298
+!MESSAGE Unable to locate the JVM for project GAE Development Examples. Please verify that you have a project-level JVM installed by inspecting your project's build path.
+
+!ENTRY com.google.gdt.eclipse.core 4 0 2012-12-19 06:13:52.305
+!MESSAGE Unable to locate the JVM for project GAE Development Examples. Please verify that you have a project-level JVM installed by inspecting your project's build path.
+
+!ENTRY org.eclipse.core.resources 4 2 2012-12-19 06:14:16.823
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 1
+org.eclipse.core.runtime.CoreException: Unable to locate the JVM for project GAE Development Examples. Please verify that you have a project-level JVM installed by inspecting your project's build path.
+	at com.google.gdt.eclipse.core.ProcessUtilities.computeJavaExecutableFullyQualifiedPath(ProcessUtilities.java:113)
+	at com.google.gdt.eclipse.core.ProcessUtilities.computeJavaCompilerExecutableFullyQualifiedPath(ProcessUtilities.java:97)
+	at com.google.gdt.eclipse.core.ProcessUtilities.isUsingJDK(ProcessUtilities.java:176)
+	at com.google.appengine.eclipse.core.validators.GaeProjectValidator.validateUsingJDKifUsingJSPs(GaeProjectValidator.java:227)
+	at com.google.appengine.eclipse.core.validators.GaeProjectValidator.build(GaeProjectValidator.java:108)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:728)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:199)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:239)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:292)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:295)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:351)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:374)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:143)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:241)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 com.google.gdt.eclipse.core 4 0 2012-12-19 06:14:16.823
+!MESSAGE Unable to locate the JVM for project GAE Development Examples. Please verify that you have a project-level JVM installed by inspecting your project's build path.
+!SUBENTRY 1 com.google.gdt.eclipse.core 4 0 2012-12-19 06:14:16.823
+!MESSAGE Unable to locate the JVM for project GAE Development Examples. Please verify that you have a project-level JVM installed by inspecting your project's build path.
+
+!ENTRY org.eclipse.core.resources 4 75 2012-12-19 06:14:16.878
+!MESSAGE Errors occurred during the build.
+!SUBENTRY 1 com.google.appengine.eclipse.core 4 75 2012-12-19 06:14:16.878
+!MESSAGE Errors running builder 'Google App Engine Project Validator' on project 'GAE Development Examples'.
+!STACK 1
+org.eclipse.core.runtime.CoreException: Unable to locate the JVM for project GAE Development Examples. Please verify that you have a project-level JVM installed by inspecting your project's build path.
+	at com.google.gdt.eclipse.core.ProcessUtilities.computeJavaExecutableFullyQualifiedPath(ProcessUtilities.java:113)
+	at com.google.gdt.eclipse.core.ProcessUtilities.computeJavaCompilerExecutableFullyQualifiedPath(ProcessUtilities.java:97)
+	at com.google.gdt.eclipse.core.ProcessUtilities.isUsingJDK(ProcessUtilities.java:176)
+	at com.google.appengine.eclipse.core.validators.GaeProjectValidator.validateUsingJDKifUsingJSPs(GaeProjectValidator.java:227)
+	at com.google.appengine.eclipse.core.validators.GaeProjectValidator.build(GaeProjectValidator.java:108)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:728)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:199)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:239)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:292)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:295)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:351)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:374)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:143)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:241)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 2 com.google.gdt.eclipse.core 4 0 2012-12-19 06:14:16.879
+!MESSAGE Unable to locate the JVM for project GAE Development Examples. Please verify that you have a project-level JVM installed by inspecting your project's build path.
+!SUBENTRY 1 com.google.gdt.eclipse.core 4 0 2012-12-19 06:14:16.879
+!MESSAGE Unable to locate the JVM for project GAE Development Examples. Please verify that you have a project-level JVM installed by inspecting your project's build path.
+
+!ENTRY com.google.gdt.eclipse.core 4 0 2012-12-19 06:14:16.936
+!MESSAGE Unable to locate the JVM for project GAE Development Examples. Please verify that you have a project-level JVM installed by inspecting your project's build path.
+!SESSION 2012-12-20 08:03:54.963 -----------------------------------------------
+eclipse.buildId=M20120914-1800
+java.version=1.7.0_10
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.eclipse.core.resources 2 10035 2012-12-20 08:04:17.353
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2012-12-20 08:04:45.542
+!MESSAGE SecurityException: Unable to find field for dex.jar
+!STACK 0
+java.lang.NoSuchFieldException: forceJumbo
+	at java.lang.Class.getField(Unknown Source)
+	at com.android.ide.eclipse.adt.internal.build.DexWrapper.loadDex(DexWrapper.java:96)
+	at com.android.ide.eclipse.adt.internal.sdk.Sdk.loadSdk(Sdk.java:273)
+	at com.android.ide.eclipse.adt.AdtPlugin$7.run(AdtPlugin.java:1389)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY com.google.gdt.eclipse.core 4 0 2012-12-20 08:05:17.238
+!MESSAGE The site.xml file downloaded from the update site does not contain any <feature> elements with an id of 'com.google.appengine.eclipse.sdkbundle.e42.feature'. Unable to determine if there are updates available.
