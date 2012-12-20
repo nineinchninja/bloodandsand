@@ -1,0 +1,442 @@
+/**
+ * 
+ */
+package com.GAE.examples.beans;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.logging.Logger;
+
+import org.mortbay.log.Log;
+
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.EntityNotFoundException;
+import com.google.appengine.api.datastore.FetchOptions;
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Transaction;
+import com.google.appengine.api.datastore.Query.CompositeFilterOperator;
+import com.google.appengine.api.datastore.Query.Filter;
+import com.google.appengine.api.datastore.Query.FilterOperator;
+import com.google.appengine.api.datastore.Query.FilterPredicate;
+
+/**
+ * @author Andrew Hayward
+ * Created December 2012
+ *
+ */
+public class GladiatorDataBean implements java.io.Serializable {
+	/**
+	 * This class is used to manage all activities related to gladiators. It is a wrapper for the 
+	 * datastore operations, and contains key methods for creating new gladiators for the market, 
+	 * updating gladiator skills and attributes etc
+	 * 
+	 */
+	private static final long serialVersionUID = -1717471076334573064L;
+	private long strength;
+	private long agility;
+	private long speed;
+	private long intelligence;
+	private long constitution;
+	private long willpower;
+	
+	private long bloodlust; 
+	private long aggression; 
+	private long chattiness; 							
+	private long consistency;
+	
+	public String name;
+	private String gender;
+	
+	public long wins;
+	public long losses;
+	public long popularity;
+	
+	public long price;	
+	private String status;	
+	//private Map<String, Long> weaponSkills;	
+	public String owner; 
+	
+	public String key;
+	
+	protected static final Logger log = Logger.getLogger(GladiatorDataBean.class.getName());
+	private String gladiatorGroup = "gladiators";
+	
+	private static int BASE_NUMBER_OF_RECRUITS = 25;//used to limit the query for the market place
+	FetchOptions gladiator_market_check = FetchOptions.Builder.withLimit(BASE_NUMBER_OF_RECRUITS);
+	
+	public GladiatorDataBean(){
+		
+	}
+	
+	public GladiatorDataBean(Entity g) {
+		this.setStrength((Long)(g.getProperty("strength")));
+		this.setAgility((Long)(g.getProperty("agility")));
+		this.setSpeed((Long)(g.getProperty("speed")));
+		this.setIntelligence((Long)(g.getProperty("intelligence")));
+		this.setConstitution((Long)(g.getProperty("constitution")));
+		this.setBloodlust((Long)(g.getProperty("bloodlust")));
+		this.setAggression((Long)(g.getProperty("aggression")));
+		this.setChattiness((Long)(g.getProperty("chattiness")));
+		this.setConsistency((Long)(g.getProperty("consistency")));
+		this.setWillpower((Long)(g.getProperty("willpower")));
+		this.setWins((Long)(g.getProperty("wins")));
+		this.setLosses((Long)(g.getProperty("losses")));
+		this.setPopularity((Long)(g.getProperty("popularity")));
+		this.setPrice((Long)(g.getProperty("price")));
+		
+		this.setStatus((String)(g.getProperty("status")));
+		
+		//gladiator.setWeaponSkills((g.getProperty("weaponSkills")));
+		
+		this.setOwner((String)g.getProperty("owner")); 
+		this.setGender((String)g.getProperty("gender"));
+		this.setName((String)g.getProperty("name"));
+		this.setKey(KeyFactory.keyToString(g.getKey()));
+	}
+	
+	public void createGladiator(){
+		Boolean sanityCheck = false;
+		Random r = new Random();
+		while (!sanityCheck){//included in a while loop to avoid gladiators with too extreme stats	
+			strength = r.nextInt(19) + 1;
+			agility = r.nextInt(19) + 1;
+			speed = r.nextInt(19) + 1;
+			intelligence = r.nextInt(19) + 1;
+			constitution = r.nextInt(19) + 1;
+			willpower = r.nextInt(19) + 1;
+			long i = strength + agility + speed + intelligence + constitution + willpower;
+			if (i >= 45 && i <= 75){
+				sanityCheck = true;
+			}
+		}
+		
+		bloodlust = r.nextInt(10) + 6; 
+		aggression = r.nextInt(10) + 6; 
+		chattiness = r.nextInt(10) + 6; 						
+		consistency = r.nextInt(10) + 6;	
+
+		setAllWeaponSkillsToDefault();
+		wins = 0;
+		losses = 0;
+		popularity = 50;
+		name = null;
+		gender = setGender();
+		
+		status = "FIT";
+		owner = null;
+		setPrice();
+	}
+	
+	public void saveGladiator() {
+		Key gladiatorKey = KeyFactory.createKey("Gladiators", gladiatorGroup);
+		Entity newGladiator = new Entity("Gladiator", gladiatorKey);
+		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+		Transaction txn = datastore.beginTransaction();
+		try {
+			newGladiator.setProperty("strength", strength);
+			newGladiator.setProperty("agility", agility);
+			newGladiator.setProperty("speed", speed);
+			newGladiator.setProperty("intelligence", intelligence);
+			newGladiator.setProperty("constitution", constitution);
+			newGladiator.setProperty("willpower", willpower);			
+			
+			newGladiator.setProperty("bloodlust", bloodlust); 
+			newGladiator.setProperty("aggression", aggression); 
+			newGladiator.setProperty("chattiness", chattiness); 							
+			newGladiator.setProperty("consistency", consistency);
+			
+			newGladiator.setProperty("wins", 0);
+			newGladiator.setProperty("losses", 0);
+			newGladiator.setProperty("popularity", 0);
+			
+			newGladiator.setProperty("price", price);
+			
+			newGladiator.setProperty("status", status);
+			
+			//newGladiator.setProperty("weaponSkills", weaponSkills);
+			
+			newGladiator.setProperty("owner", owner); 
+			
+			newGladiator.setProperty("name", name);
+			newGladiator.setProperty("gender", gender);
+
+			datastore.put(newGladiator);
+			txn.commit();
+		} finally {	
+		    if (txn.isActive()) {
+		        txn.rollback();
+		        log.warning("Save New Gladiator transaction failed: rolled back");
+		    }
+		}	
+	}
+	
+	public int countAvailableGladiators(FetchOptions free_recruit_check){//used in the FreshRecruits cron job
+		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+		Query q = new Query("Gladiator");
+        q.isKeysOnly();
+        Filter unowned = new FilterPredicate("owner", FilterOperator.EQUAL, null);
+        Filter alive = new FilterPredicate("status", FilterOperator.EQUAL, "FIT");
+        Filter currentRecruits = CompositeFilterOperator.and(unowned, alive);
+        q.setFilter(currentRecruits);
+        int results = datastore.prepare(q).countEntities(free_recruit_check);
+        log.info("total returned: " + results);
+        return results;
+	}
+	
+	public List<GladiatorDataBean> getGladiatorsOnSale(){//used in the gladiator market
+		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+		List<GladiatorDataBean> gladiators = new ArrayList<GladiatorDataBean>(); 
+		Query q = new Query("Gladiator");
+		
+        Filter unowned = new FilterPredicate("owner", FilterOperator.EQUAL, null);
+        Filter alive = new FilterPredicate("status", FilterOperator.EQUAL, "FIT");
+        Filter currentRecruits = CompositeFilterOperator.and(unowned, alive);
+        q.setFilter(currentRecruits);
+        List<Entity> results = datastore.prepare(q).asList(gladiator_market_check);
+        log.info("total returned available recruits: " + results.size());
+        Iterator<Entity> it = results.iterator();
+        while (it.hasNext()){
+        	GladiatorDataBean temp = new GladiatorDataBean(it.next());
+        	gladiators.add(temp);
+        }
+        return gladiators;
+	}
+
+	
+	public String setGender(){//this with no arguments is used to set the gender for a new gladiator, not for
+		Random r = new Random();// sex change operations
+		int g = r.nextInt(10);
+		if (g > 3){
+			return "M";
+		} else {
+			return "F";
+		}
+	}
+	
+
+	public void setKey(String key) {
+		this.key = key;	
+	}
+	
+	public String getKey(){
+		if (this.key != null){
+			return this.key;
+		} else {
+			return null;
+		}
+	}	
+
+	public void setStrength (long strength) {		
+		this.strength = strength;		
+	}
+	
+	public long getStrength () {		
+		return strength;		
+	}
+	
+	public void setAgility (long agility) {
+		this.agility = agility;
+	}
+	
+	public long getAgility () {		
+		return agility;		
+	}
+	
+	public void setSpeed (long speed) {
+		this.speed = speed;
+	}
+	
+	public long getSpeed () {		
+		return speed;		
+	}
+	
+	public void setIntelligence (long intelligence) {
+		this.intelligence = intelligence;
+	}
+	
+	public long getIntelligence () {		
+		return intelligence;		
+	}
+	
+	public void setConstitution (long constitution ) {
+		this.constitution = constitution;
+	}
+	
+	public long getConstitution () {		
+		return constitution;		
+	}
+	
+	public void setWillpower (long willpower) {
+		this.willpower = willpower;		
+	}
+	
+	public long getWillpower () {		
+		return willpower;		
+	}
+	
+	public void setBloodlust (long bloodlust) {
+		this.bloodlust = bloodlust;
+	}
+	
+	public long getBloodlust () {		
+		return bloodlust;		
+	}
+	
+	public void setAggression (long aggression) {
+		this.aggression = aggression;
+	}
+	
+	public long getAggression () {		
+		return aggression;		
+	}
+	
+	public void setChattiness (long chattiness) {
+		this.chattiness = chattiness;
+	}
+	
+	public long getChattiness () {		
+		return chattiness;		
+	}	
+	
+	public void setConsistency (long consistency) {
+		this.consistency = consistency;
+	}
+	
+	public long getConsistency () {		
+		return consistency;		
+	}		
+	
+	public void setWins (long wins) {
+		this.wins = wins;
+	}
+	
+	public long getWins () {		
+		return wins;		
+	}
+	
+	public void setLosses (long losses) {
+		this.losses = losses;
+	}
+	
+	public long getLosses () {		
+		return losses;		
+	}	
+	
+	public void setPopularity (long popularity) {
+		this.popularity = popularity;
+	}
+	
+	public long getPopularity () {		
+		return popularity;		
+	}	
+	
+	public void setPrice (long price) {
+		this.price = price;
+	}
+	
+	public void setPrice(){
+		Random r = new Random();
+		price = (int)((strength + agility + speed + intelligence + constitution + willpower + r.nextInt(25)) / 10);
+	}
+	
+	public long getPrice () {		
+		return price;		
+	}	
+	
+	public void setStatus (String status) {
+		this.status = status;
+	}
+	
+	public String getStatus () {		
+		return status;		
+	}		
+	
+	public void setOwner (String owner) {
+		this.owner = owner;
+	}
+	
+	public String getOwner () {		
+		return owner;		
+	}			
+	
+//	public void setWeaponsSkills (Map<String, Long> weaponSkills) {
+//		this.weaponSkills = weaponSkills;
+//	}	
+	
+//	public void setAllWeaponSkillsToDefault(){
+//		weaponSkills.put("greatsword", (long) 1);
+//		weaponSkills.put("spear", (long) 1);
+//		weaponSkills.put("greatclub", (long) 1);
+//		weaponSkills.put("greataxe", (long) 1);
+//		weaponSkills.put("dagger", (long) 1);
+//		weaponSkills.put("sword", (long) 1);
+//		weaponSkills.put("buckler", (long) 1);
+//		weaponSkills.put("unarmed", (long) 1);
+//		weaponSkills.put("quarterstaff", (long) 1);		
+//	}	
+//	
+//	public Map<String, Long> getWeaponsSkills () {		
+//		return weaponSkills;		
+//	}
+//	public void incrementWeaponSkill(String skillName, int incrementValue){
+//		Long temp = weaponSkills.get(skillName);
+//		weaponSkills.put(skillName, temp + incrementValue);		
+//	}	
+	public void setGender(String gender) {
+		this.gender = gender;
+		
+	}			
+	public String getGender() {
+		return gender;
+		
+	}
+
+	public void setName(String name) {
+		if (name == "null"){
+			this.name = "No name selected";
+		}
+		this.name = name;
+	}	
+	
+	public String getName(){
+		if (name == null){
+			return "No name selected";
+		}
+		return name;
+	}
+
+	public void setNewOwner(String owner, String keyIn) {//When a gladiator is purchased, pass the owner name and the
+		this.owner = owner;								// key a a string to this function.
+		Key gladiatorKey = KeyFactory.stringToKey(keyIn); //which looks the gladiator up in the ds and updates it
+		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+		Entity newGladiator;
+		try {
+			newGladiator = datastore.get(gladiatorKey);
+		} catch (EntityNotFoundException e) {
+			// TODO Auto-generated catch block
+			log.info("GladiatorDataBean.java: Didn't find the gladiator when using key search");
+			e.printStackTrace();
+			return;
+		}
+		
+		Transaction txn = datastore.beginTransaction();
+		try {			
+			newGladiator.setProperty("owner", owner);		
+
+			datastore.put(newGladiator);
+			txn.commit();
+		} finally {	
+		    if (txn.isActive()) {
+		        txn.rollback();
+		        log.info("GladiatorDataBean: Transaction failed");
+		    } 
+		}	
+	}
+}

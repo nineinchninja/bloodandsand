@@ -1,0 +1,94 @@
+/**
+ * 
+ */
+package com.GAE.examples.development;
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.*;
+
+import com.GAE.examples.beans.UserDataBean;
+import com.GAE.examples.utilities.*;
+
+
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+
+
+
+
+/**
+ * @author Andrew Hayward
+ * December 2012
+ * TODO - clean this up. The interfaces are inconsistent and it should be changed to using beans
+ */
+//@SuppressWarnings("serial")
+public class LoginServlet extends BaseServlet {
+	private String loggedInRedirect = "/playerpages/myludus.jsp";
+	private String loginRedirect = "/admin/login.jsp";
+	
+	//class that handles all login requests. All failed authentication checks should be directed here
+	public void doGet(HttpServletRequest req, HttpServletResponse resp)
+		      throws IOException, ServletException {
+		//check for user cookie and session
+		//if yes to both, redirect to user page
+		//if no, redirect to login.html
+		
+		if (checkLogin(req)){
+			resp.sendRedirect(loggedInRedirect);
+		} else {
+			resp.sendRedirect(loginRedirect);
+		}
+	}
+	
+	public void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException, ServletException {
+		String username = req.getParameter("username").toLowerCase();
+		String pwd 		= req.getParameter("password");
+		Boolean login   = false;
+		HttpSession sess = req.getSession();
+		User temp = new User();
+    	try {
+			login = temp.attemptLogin(username, pwd);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvalidKeySpecException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		 if (login){
+			 log.info("The user " + username + " has logged in.");
+			 
+			 temp.setUserName(username);
+			 
+			 sess.setAttribute("username", username);
+			 
+			 UserDataBean u = temp.createUserDataBean(username);
+			 
+			 sess.setAttribute("UserData", u);
+			 
+			 try {
+				setSecureCookie(resp, "user", username);
+			} catch (NoSuchAlgorithmException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvalidKeySpecException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		
+			 RequestDispatcher rd = req.getRequestDispatcher(loggedInRedirect);
+			 rd.forward(req, resp);
+			 
+		 } else {
+			 RequestDispatcher rd = req.getRequestDispatcher(loginRedirect);
+			 req.setAttribute("username", username);
+			 req.setAttribute("LoginError", "Login failed. Please enter a valid name and password");
+			 rd.forward(req, resp);
+		 }
+	}
+
+}
