@@ -1,0 +1,230 @@
+/**
+ * 
+ */
+package com.GAE.examples.utilities;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.logging.Logger;
+
+
+import com.GAE.examples.beans.GladiatorDataBean;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.FetchOptions;
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.Filter;
+import com.google.appengine.api.datastore.Transaction;
+import com.google.appengine.api.datastore.Query.FilterOperator;
+import com.google.appengine.api.datastore.Query.FilterPredicate;
+import com.google.appengine.api.datastore.Query.CompositeFilterOperator;
+
+/**
+ * @author Andrew Hayward
+ *
+ * Created December 2012
+ */
+public class Gladiator {
+	//physical stats
+	// minimum values for these stats is 1. Maximum is 50
+	// when gladiators are first created, the range is 1-20.
+	// training can increase these stats to max.
+	// however, a character can never have more than 2 stats at 50
+	// 2 stats at 40, and 2 stats at 30. (ie max total stats = 240)
+	private int strength;
+	private int agility;
+	private int speed;
+	private int intelligence;//used to defend against taunts and to be able to adjust strategy or actions quickly
+	private int constitution;
+	private int willpower;
+	
+	//personality attributes
+	// these are a range between 1-20 and are used to determine 
+	// behaviour each round. Strategy set by the player for a match can 
+	// influence these values for a match
+	private int bloodlust; //high value makes gladiators more likely to attack to kill. Lower value = more reasoned
+	private int aggression; //high value makes gladiators more likely to attack. Lower value leads to more defensive
+	private int chattiness; //high value means more likely to taunt, which can increase opponent aggression and bloodlust							
+	private int consistency;//higher value means more likely to repeat previous actions
+	
+	public String name;
+	public String gender;
+	
+	public int wins;
+	public int losses;
+	public int popularity;
+	
+	public int price;
+	
+	private String status;//Fit, Injured, Dead
+	
+	private Map<String, Integer> weaponSkills = new HashMap<String, Integer>();
+	
+	public String owner; 	
+	
+	private String gladiatorGroup = "gladiators";
+	
+	private static int NUMBER_OF_RECRUITS_RETURNED = 25;//used to limit the query for the market place
+	FetchOptions gladiator_market_check = FetchOptions.Builder.withLimit(BASE_NUMBER_OF_RECRUITS);
+	
+	private static final Logger log = Logger.getLogger(BaseServlet.class.getName());
+	
+	public Gladiator(){
+		
+	}
+	public int getWeaponSkill (String skillName){
+		return weaponSkills.get(skillName);
+	}
+	
+	public void setWeaponSkill (String skillName, int skillValue){
+		weaponSkills.put(skillName, skillValue);
+	}
+	
+	public void setAllWeaponSkillsToDefault(){
+		weaponSkills.put("greatsword", 1);
+		weaponSkills.put("spear", 1);
+		weaponSkills.put("greatclub", 1);
+		weaponSkills.put("greataxe", 1);
+		weaponSkills.put("dagger", 1);
+		weaponSkills.put("sword", 1);
+		weaponSkills.put("buckler", 1);
+		weaponSkills.put("unarmed", 1);
+		weaponSkills.put("quarterstaff", 1);		
+	}
+	
+	public void incrementWeaponSkill(String skillName, int incrementValue){
+		int temp = weaponSkills.get(skillName);
+		weaponSkills.put(skillName, temp + incrementValue);		
+	}	
+	
+	public void createGladiator(){
+		Boolean sanityCheck = false;
+		Random r = new Random();
+		while (!sanityCheck){//included in a while loop to avoid gladiators with too extreme stats	
+			strength = r.nextInt(19) + 1;
+			agility = r.nextInt(19) + 1;
+			speed = r.nextInt(19) + 1;
+			intelligence = r.nextInt(19) + 1;
+			constitution = r.nextInt(19) + 1;
+			willpower = r.nextInt(19) + 1;
+			int i = strength + agility + speed + intelligence + constitution + willpower;
+			if (i >= 45 && i <= 75){
+				sanityCheck = true;
+			}
+		}
+		
+		bloodlust = r.nextInt(10) + 6; 
+		aggression = r.nextInt(10) + 6; 
+		chattiness = r.nextInt(10) + 6; 						
+		consistency = r.nextInt(10) + 6;	
+
+		setAllWeaponSkillsToDefault();
+		wins = 0;
+		losses = 0;
+		popularity = 50;
+		name = null;
+		gender = setGender();
+		
+		status = "FIT";
+		owner = null;
+		setPrice();
+	}
+	
+	public String setGender(){
+		Random r = new Random();
+		int g = r.nextInt(10);
+		if (g > 3){
+			return "M";
+		} else {
+			return "F";
+		}
+	}
+	
+	public void setPrice(){
+		Random r = new Random();
+		price = (int)((strength + agility + speed + intelligence + constitution + willpower + r.nextInt(25)) / 10);
+	}
+
+	public void saveGladiator() {
+		Key gladiatorKey = KeyFactory.createKey("Gladiators", gladiatorGroup);
+		Entity newGladiator = new Entity("Gladiator", gladiatorKey);
+		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+		Transaction txn = datastore.beginTransaction();
+		try {
+			newGladiator.setProperty("strength", strength);
+			newGladiator.setProperty("agility", agility);
+			newGladiator.setProperty("speed", speed);
+			newGladiator.setProperty("intelligence", intelligence);
+			newGladiator.setProperty("constitution", constitution);
+			newGladiator.setProperty("willpower", willpower);			
+			
+			newGladiator.setProperty("bloodlust", bloodlust); 
+			newGladiator.setProperty("aggression", aggression); 
+			newGladiator.setProperty("chattiness", chattiness); 							
+			newGladiator.setProperty("consistency", consistency);
+			
+			newGladiator.setProperty("wins", 0);
+			newGladiator.setProperty("losses", 0);
+			newGladiator.setProperty("popularity", 0);
+			
+			newGladiator.setProperty("price", price);
+			
+			newGladiator.setProperty("status", status);
+			
+			//newGladiator.setProperty("weaponSkills", weaponSkills);
+			
+			newGladiator.setProperty("owner", owner); 
+			
+			newGladiator.setProperty("name", name);
+			newGladiator.setProperty("gender", gender);
+
+			datastore.put(newGladiator);
+			txn.commit();
+		} finally {	
+		    if (txn.isActive()) {
+		        txn.rollback();
+		        log.warning("Save New Gladiator transaction failed: rolled back");
+		    }
+		}	
+	}
+	
+	public int countAvailableGladiators(FetchOptions free_recruit_check){//used in the FreshRecruits cron job
+		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+		Query q = new Query("Gladiator");
+        q.isKeysOnly();
+        Filter unowned = new FilterPredicate("owner", FilterOperator.EQUAL, null);
+        Filter alive = new FilterPredicate("status", FilterOperator.EQUAL, "FIT");
+        Filter currentRecruits = CompositeFilterOperator.and(unowned, alive);
+        q.setFilter(currentRecruits);
+        int results = datastore.prepare(q).countEntities(free_recruit_check);
+        log.info("total returned: " + results);
+        return results;
+	}
+	
+	public List<GladiatorDataBean> getGladiatorsOnSale(){//used in the gladiator market
+		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+		List<GladiatorDataBean> gladiators = new ArrayList<GladiatorDataBean>(); 
+		Query q = new Query("Gladiator");
+		
+        Filter unowned = new FilterPredicate("owner", FilterOperator.EQUAL, null);
+        Filter alive = new FilterPredicate("status", FilterOperator.EQUAL, "FIT");
+        Filter currentRecruits = CompositeFilterOperator.and(unowned, alive);
+        q.setFilter(currentRecruits);
+        List<Entity> results = datastore.prepare(q).asList(gladiator_market_check);
+        log.info("total returned available recruits: " + results.size());
+        Iterator<Entity> it = results.iterator();
+        while (it.hasNext()){
+        	GladiatorDataBean temp = new GladiatorDataBean(it.next());
+        	gladiators.add(temp);
+        }
+        return gladiators;
+	}
+
+}

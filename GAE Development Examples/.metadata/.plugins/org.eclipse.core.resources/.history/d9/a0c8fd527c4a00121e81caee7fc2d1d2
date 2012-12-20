@@ -1,0 +1,49 @@
+/**
+ * 
+ */
+package com.GAE.examples.development;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.logging.Logger;
+
+
+import com.GAE.examples.utilities.BaseServlet;
+import com.GAE.examples.utilities.Gladiator;
+
+import com.google.appengine.api.datastore.FetchOptions;
+
+
+/**
+ * @author dewie
+ *
+ */
+@SuppressWarnings("serial")
+public class FreshRecruits  extends HttpServlet {
+	private static int BASE_NUMBER_OF_RECRUITS = 20; //this is the number of recruits that should be available at any time.
+	protected static final Logger log = Logger.getLogger(BaseServlet.class.getName());
+	private FetchOptions free_recruit_check =
+		    FetchOptions.Builder.withLimit(BASE_NUMBER_OF_RECRUITS + 5);
+	
+	public void doGet(HttpServletRequest req, HttpServletResponse resp)
+		      throws IOException, ServletException {
+		int results = 0;
+    	Gladiator g = new Gladiator();
+		results = g.countAvailableGladiators(free_recruit_check);
+		log.info("current number of recruits= " + results);
+		
+        if (results <= BASE_NUMBER_OF_RECRUITS){
+        	int count = BASE_NUMBER_OF_RECRUITS - results;
+
+        	for (; count > 0; count --){
+        		g.createGladiator();
+        		g.saveGladiator();
+        	}       	
+        }		
+	}
+
+}

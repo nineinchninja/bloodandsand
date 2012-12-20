@@ -1,0 +1,289 @@
+/**
+ * 
+ */
+package com.GAE.examples.beans;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Logger;
+
+import org.mortbay.log.Log;
+
+import com.GAE.examples.utilities.BaseServlet;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.EntityNotFoundException;
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
+import com.google.appengine.api.datastore.Transaction;
+
+/**
+ * @author dewie
+ *
+ */
+public class GladiatorDataBean implements java.io.Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1717471076334573064L;
+	private long strength;
+	private long agility;
+	private long speed;
+	private long intelligence;
+	private long constitution;
+	private long willpower;
+	
+	private long bloodlust; 
+	private long aggression; 
+	private long chattiness; 							
+	private long consistency;
+	
+	public String name;
+	private String gender;
+	
+	public long wins;
+	public long losses;
+	public long popularity;
+	
+	public long price;	
+	private String status;	
+	private Map<String, Long> weaponSkills;	
+	public String owner; 
+	
+	public String key;
+	
+	protected static final Logger log = Logger.getLogger(GladiatorDataBean.class.getName());
+	private String gladiatorGroup = "gladiators";
+	
+	public GladiatorDataBean(){
+		
+	}
+	
+	public GladiatorDataBean(Entity g) {
+		this.setStrength((Long)(g.getProperty("strength")));
+		this.setAgility((Long)(g.getProperty("agility")));
+		this.setSpeed((Long)(g.getProperty("speed")));
+		this.setIntelligence((Long)(g.getProperty("intelligence")));
+		this.setConstitution((Long)(g.getProperty("constitution")));
+		this.setBloodlust((Long)(g.getProperty("bloodlust")));
+		this.setAggression((Long)(g.getProperty("aggression")));
+		this.setChattiness((Long)(g.getProperty("chattiness")));
+		this.setConsistency((Long)(g.getProperty("consistency")));
+		this.setWillpower((Long)(g.getProperty("willpower")));
+		this.setWins((Long)(g.getProperty("wins")));
+		this.setLosses((Long)(g.getProperty("losses")));
+		this.setPopularity((Long)(g.getProperty("popularity")));
+		this.setPrice((Long)(g.getProperty("price")));
+		
+		this.setStatus((String)(g.getProperty("status")));
+		
+		//gladiator.setWeaponSkills((g.getProperty("weaponSkills")));
+		
+		this.setOwner((String)g.getProperty("owner")); 
+		this.setGender((String)g.getProperty("gender"));
+		this.setName((String)g.getProperty("name"));
+		this.setKey(KeyFactory.keyToString(g.getKey()));
+	}
+
+	public void setKey(String key) {
+		this.key = key;	
+	}
+	
+	public String getKey(){
+		if (this.key != null){
+			return this.key;
+		} else {
+			return null;
+		}
+	}
+	
+	
+
+	public void setStrength (long strength) {		
+		this.strength = strength;		
+	}
+	
+	public long getStrength () {		
+		return strength;		
+	}
+	
+	public void setAgility (long agility) {
+		this.agility = agility;
+	}
+	
+	public long getAgility () {		
+		return agility;		
+	}
+	
+	public void setSpeed (long speed) {
+		this.speed = speed;
+	}
+	
+	public long getSpeed () {		
+		return speed;		
+	}
+	
+	public void setIntelligence (long intelligence) {
+		this.intelligence = intelligence;
+	}
+	
+	public long getIntelligence () {		
+		return intelligence;		
+	}
+	
+	public void setConstitution (long constitution ) {
+		this.constitution = constitution;
+	}
+	
+	public long getConstitution () {		
+		return constitution;		
+	}
+	
+	public void setWillpower (long willpower) {
+		this.willpower = willpower;		
+	}
+	
+	public long getWillpower () {		
+		return willpower;		
+	}
+	
+	public void setBloodlust (long bloodlust) {
+		this.bloodlust = bloodlust;
+	}
+	
+	public long getBloodlust () {		
+		return bloodlust;		
+	}
+	
+	public void setAggression (long aggression) {
+		this.aggression = aggression;
+	}
+	
+	public long getAggression () {		
+		return aggression;		
+	}
+	
+	public void setChattiness (long chattiness) {
+		this.chattiness = chattiness;
+	}
+	
+	public long getChattiness () {		
+		return chattiness;		
+	}	
+	
+	public void setConsistency (long consistency) {
+		this.consistency = consistency;
+	}
+	
+	public long getConsistency () {		
+		return consistency;		
+	}		
+	
+	public void setWins (long wins) {
+		this.wins = wins;
+	}
+	
+	public long getWins () {		
+		return wins;		
+	}
+	
+	public void setLosses (long losses) {
+		this.losses = losses;
+	}
+	
+	public long getLosses () {		
+		return losses;		
+	}	
+	
+	public void setPopularity (long popularity) {
+		this.popularity = popularity;
+	}
+	
+	public long getPopularity () {		
+		return popularity;		
+	}	
+	
+	public void setPrice (long price) {
+		this.price = price;
+	}
+	
+	public long getPrice () {		
+		return price;		
+	}	
+	
+	public void setStatus (String status) {
+		this.status = status;
+	}
+	
+	public String getStatus () {		
+		return status;		
+	}		
+	
+	public void setOwner (String owner) {
+		this.owner = owner;
+	}
+	
+	public String getOwner () {		
+		return owner;		
+	}			
+	
+	public void setWeaponsSkills (Map<String, Long> weaponSkills) {
+		this.weaponSkills = weaponSkills;
+	}
+	
+	public Map<String, Long> getWeaponsSkills () {		
+		return weaponSkills;		
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+		
+	}			
+	public String getGender() {
+		return gender;
+		
+	}
+
+	public void setName(String name) {
+		if (name == "null"){
+			this.name = "No name selected";
+		}
+		this.name = name;
+	}	
+	
+	public String getName(){
+		if (name == null){
+			return "No name selected";
+		}
+		return name;
+	}
+
+	public void setOwner(String owner, String keyIn) {
+		this.owner = owner;
+		Key gladiatorKey = KeyFactory.stringToKey(keyIn);
+		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+		Entity newGladiator;
+		try {
+			newGladiator = datastore.get(gladiatorKey);
+		} catch (EntityNotFoundException e) {
+			// TODO Auto-generated catch block
+			log.info("GladiatorDataBean.java: Didn't find the gladiator when using key search");
+			e.printStackTrace();
+			return;
+		}
+		
+		Transaction txn = datastore.beginTransaction();
+		try {			
+			newGladiator.setProperty("owner", owner);		
+
+			datastore.put(newGladiator);
+			txn.commit();
+		} finally {	
+		    if (txn.isActive()) {
+		        txn.rollback();
+		        log.info("GladiatorDataBean: Transaction failed");
+		    } 
+		}	
+	}
+}
